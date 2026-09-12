@@ -1,0 +1,184 @@
+/**
+ * Modern WooCommerce Toast Notices Style
+ * File: assets/css/wc-toast.css
+ */
+
+:root {
+    --cwd-toast-bg: rgba(22, 8, 8, 0.781);
+    --cwd-toast-border: rgba(255, 255, 255, 0.12);
+    --cwd-toast-text: #f8fafc;
+    --cwd-toast-success: #388E3C;
+    --cwd-toast-error: #9F1C31;
+    --cwd-toast-info: #1565C0;
+    --cwd-toast-radius: 10px;
+}
+
+/* مخفی‌سازی باکس‌های پیش‌فرض و زشت ووکامرس برای جلوگیری از پرش صفحه */
+.woocommerce-notices-wrapper .woocommerce-message,
+.woocommerce-notices-wrapper .woocommerce-error,
+.woocommerce-notices-wrapper .woocommerce-info,
+.woocommerce-NoticeGroup,
+.wc-block-components-notice-banner {
+    display: none !important;
+}
+
+/* ساختار کلی Toastify */
+.toastify.cwd-wc-toast {
+    --toast-accent: var(--cwd-toast-info);
+    width: min(420px, calc(100vw - 32px));
+    max-width: none;
+    min-height: 64px;
+    max-height: 65vh;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    direction: rtl;
+    text-align: right;
+    font-family: inherit;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--cwd-toast-text);
+    background: var(--cwd-toast-bg) !important;
+    border: 1px solid var(--cwd-toast-border);
+    border-radius: var(--cwd-toast-radius);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+/* تم‌بندی بر اساس نوع اعلان */
+.cwd-wc-toast--success { --toast-accent: var(--cwd-toast-success) !important; }
+.cwd-wc-toast--error   { --toast-accent: var(--cwd-toast-error) !important; }
+.cwd-wc-toast--info    { --toast-accent: var(--cwd-toast-info) !important; }
+
+/* نوار رنگی عمودی سمت راست (RTL) */
+.toastify.cwd-wc-toast::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 4px;
+    background: var(--toast-accent);
+}
+
+/* پروگرس‌بار زمان اتمام توست */
+.toastify.cwd-wc-toast::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--toast-accent);
+    transform-origin: right;
+    animation: cwdToastTimer 5s linear forwards;
+}
+
+.toastify.cwd-wc-toast:hover::after {
+    animation-play-state: paused;
+}
+
+.cwd-toast-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* آیکون مدرن SVG با پس‌زمینه رنگی */
+.cwd-toast-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--toast-accent);
+}
+
+.cwd-toast-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.cwd-toast-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cwd-toast-text {
+    font-weight: 500;
+    color: var(--cwd-toast-text);
+    word-break: break-word;
+}
+
+.cwd-toast-text strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* دکمه اکشن (مثلا دکمه مشاهده سبد خرید) */
+.cwd-toast-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    align-self: flex-start;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--toast-accent);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: filter 0.2s ease;
+    margin-top: 4px;
+}
+
+.cwd-toast-action-btn:hover {
+    filter: brightness(1.15);
+    color: #ffffff;
+}
+
+/* دکمه بستن توست */
+.toastify.cwd-wc-toast .toast-close {
+    padding: 4px;
+    margin: 0;
+    color: #94a3b8;
+    opacity: 0.7;
+    font-size: 18px;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.toastify.cwd-wc-toast .toast-close:hover {
+    opacity: 1;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+@keyframes cwdToastTimer {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+}
+
+@media (max-width: 480px) {
+    .toastify.cwd-wc-toast {
+        bottom: 15px !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: translateX(0) !important;
+        margin: 0 auto;
+        border-radius: 8px !important;
+  
+    }
+}
