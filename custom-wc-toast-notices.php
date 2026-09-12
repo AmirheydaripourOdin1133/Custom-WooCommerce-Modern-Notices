@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Custom WooCommerce Modern Toast Notices
- * Plugin URI: https://yourdomain.com/
+ * Plugin URI: https://github.com/AmirheydaripourOdin1133/Custom-WooCommerce-Modern-Notices 
  * Description: سیستم اعلان‌های توست مدرن، سریع و زیبا برای تمامی رویدادها، خطاها و افزودن به سبد خرید ووکامرس.
  * Version: 1.0.1
  * Author URI: https://wp-amir.ir
